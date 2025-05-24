@@ -1,0 +1,9 @@
+<h1>Your Menu Items</h1>
+<ul>
+    {% for item in menu_items %}
+    <li>{{ item.name }} - ${{ item.price }} - {% if item.available %}Available{% else %}Unavailable{% endif %}</li>
+    {% empty %}
+    <li>No menu items added yet.</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'add_menu_item' %}">Add new menu item</a>

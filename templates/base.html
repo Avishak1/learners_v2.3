@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Smart Campus Ordering{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="nav">
+                <li><a href="{% url 'user_dashboard' %}">Home</a></li>
+                <li><a href="{% url 'vendor_list' %}">Vendors</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'my_order' %}">My Orders</a></li>
+                    <li class="right"><a href="{% url 'logout' %}">Logout ({{ user.username }})</a></li>
+                {% else %}
+                    <li class="right"><a href="{% url 'login' %}">Login</a></li>
+                    <li class="right"><a href="{% url 'register' %}">Register</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="message {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Smart Campus Ordering</p>
+    </footer>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

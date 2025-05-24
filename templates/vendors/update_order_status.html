@@ -1,0 +1,24 @@
+<!-- vendors/templates/vendors/update_order_status.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Order Status</title>
+</head>
+<body>
+    <h2>Update Status for Order #{{ order.id }}</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="status">Change Status:</label>
+        <select name="status" id="status">
+            {% for key, value in order.STATUS_CHOICES %}
+                <option value="{{ key }}" {% if order.status == key %}selected{% endif %}>{{ value }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Update</button>
+    </form>
+
+    <a href="{% url 'vendor_orders' %}">Back to Orders</a>
+</body>
+</html>

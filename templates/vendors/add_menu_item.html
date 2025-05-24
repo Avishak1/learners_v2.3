@@ -1,0 +1,7 @@
+<h1>Add Menu Item</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add Item</button>
+</form>
+<a href="{% url 'vendor_menu' %}">Back to menu</a>
